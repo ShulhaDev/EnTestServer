@@ -240,6 +240,7 @@ app.post("/tests/update", async (req, res) => {
     let sql;
     let params;
     let words_ids = testData.words_ids.join(',');
+    console.log(testData);
     if(testData.id){
         sql = 'UPDATE tests SET name = ?, words_ids = ?,author_id = ? WHERE id = ?';
         params = [testData.name,words_ids,testData.author_id,testData.id];
@@ -254,7 +255,7 @@ app.post("/tests/update", async (req, res) => {
             console.log(err.message);
         }
         else{
-            res.json({'message': "ok", 'data': {test_id: this.lastID,author_id: testData.author_id}})
+            res.json({'message': "ok", 'data': {test_id: testData.id || this.lastID,author_id: testData.author_id}})
         }
     })
 });
