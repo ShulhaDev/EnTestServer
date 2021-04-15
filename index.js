@@ -110,7 +110,7 @@ app.get("/users/check", (req, res) => {
         else {
             console.log(rows);
             if (rows && rows.length > 0) {
-                res.status(200).json({"message": "ok", "data": {id: rows[0].id, name: rows[0].name,isAdmin: rows[0].isAdmin}});
+                res.status(200).json({"message": "ok", "data": rows[0]});
             }
             else
                 res.status(401).send({"error": {password: "Wrong password"}});
